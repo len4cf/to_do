@@ -19,6 +19,7 @@ const createTask = async (req, res) => {
 const getTasksByUser = async (req, res) => {
   const userId = req.params.userId;
 
+
   try {
     const tasks = await Task.find({ user: userId });
     res.status(200).json(tasks);
