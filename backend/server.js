@@ -17,7 +17,7 @@ app.use(express.json());
 
 app.use(cors({
   origin: 'http://localhost:3000', // Permite apenas esse domínio
-  methods: ['GET', 'POST'], // Especifica quais métodos são permitidos
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Especifica quais métodos são permitidos
   allowedHeaders: ['Content-Type'], // Permite o cabeçalho Content-Type
 }));
 

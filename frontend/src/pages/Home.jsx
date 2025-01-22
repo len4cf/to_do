@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom"
-import Navbar from "../components/NavBar"
 import to_do from "../to_do.png"
 
 const Home = () => {

@@ -41,7 +41,11 @@ router.post("/register", async (req, res) => {
     return res.status(400).json({ message: "Preencha todos os campos!" })
   }
 
-  if (user) {
+  const userEmail = user.email
+
+  const email = await User.findOne({ userEmail })
+
+  if (email) {
     return res.status(400).json({ message: "Email já registrado" })
   }
 
@@ -55,7 +59,6 @@ router.post("/register", async (req, res) => {
   }
 })
 
-// Rota para verificar se o usuário está logado
 router.get("/session", (req, res) => {
   if (req.session.userId) {
     res.status(200).json({ message: "Usuário logado", userId: req.session.userId });
@@ -65,15 +68,13 @@ router.get("/session", (req, res) => {
 });
 
 router.post("/logout", (req, res) => {
-  // Destroi a sessão
   req.session.destroy((err) => {
     if (err) {
       console.error("Erro ao encerrar a sessão:", err);
       return res.status(500).json({ message: "Erro ao encerrar a sessão" });
     }
 
-    // Limpa o cookie da sessão no cliente
-    res.clearCookie("connect.sid"); // Nome padrão do cookie do express-session
+    res.clearCookie("connect.sid");
     res.status(200).json({ message: "Logout bem-sucedido!" });
   });
 });

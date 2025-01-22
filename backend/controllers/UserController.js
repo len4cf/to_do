@@ -39,3 +39,31 @@ export const getUser = async (req, res) => {
     res.status(500).json({ error: "Failed to fetch user", details: err.message });
   }
 };
+
+export const deleteUser = async (req, res) => {
+
+  const userId = req.params.userId;
+
+  try {
+    await User.findByIdAndDelete(userId)
+    res.status(200).json({ success: true })
+  } catch (err) {
+    res.status(500).json({ error: "Failed to delete task", details: err.message })
+  }
+
+}
+
+
+export const updateUser = async (req, res) => {
+
+  const userId = req.params.userId;
+  const user = req.body
+
+  try {
+    await User.findByIdAndUpdate(userId, user)
+    res.status(200).json({ success: true });
+  } catch (err) {
+    res.status(500).json({ error: "Failed to update user", details: err.message });
+  }
+
+}

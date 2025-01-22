@@ -31,11 +31,6 @@ const Dashboard = () => {
         try {
           const response = await axios.get(`http://localhost:3001/tasks/${userId}`);
           setTasks(response.data);
-          // setUserData({
-          //   userId: userId,
-          //   userName: response.data.name,
-          //   userEmail: response.data.email
-          // });
           setFormData(prevData => ({ ...prevData, user: userId }));
         } catch (error) {
           console.error("Erro ao buscar os dados do usuário", error);
